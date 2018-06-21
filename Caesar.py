@@ -268,11 +268,22 @@ def rotate_character (char, rot):
         
         
        
-def encrypt(text = raw_input("Type a message:"), rot = raw_input("Encryption key:")):
+def encrypt(text = raw_input("Type a message:"), key = raw_input("Encryption key:")):
     returnvalue = ''
-    for char in rot:
-        returnvalue = returnvalue + alphabet_position(char)
+    keycount = len(key)
+    index = 0
+    for char in text:
+         if char.isalpha():
+             rot = key[(index % keycount)]
+             rot = alphabet_position(rot)
+             encrypt_char = rotate_character(char, rot)
+             returnvalue = returnvalue + encrypt_char
+             index = index + 1
+         else:
+            encrypt_char = char
+            returnvalue = returnvalue + encrypt_char
     return returnvalue
+    
         
     #returnvalue = ''
     #for char in text:
@@ -285,7 +296,7 @@ def encrypt(text = raw_input("Type a message:"), rot = raw_input("Encryption key
     
     #return returnvalue    
         
-
+print encrypt()
 
 
 
